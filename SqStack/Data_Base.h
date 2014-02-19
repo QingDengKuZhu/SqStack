@@ -32,7 +32,7 @@ STATUS GetTop(PSQSTACK pS, Elem *e);
 STATUS Push(PSQSTACK pS, const Elem v);
 
 /*删除栈顶元素.若成功删除,函数返回OK,*e保存被删除元素的值;否者函数返回FAILE,*e为垃圾值.*/
-STATUS DeleteStack(PSQSTACK pS, const size_t pos, Elem *e);
+STATUS Pop(PSQSTACK pS, Elem *e);
 
 /*从栈底到栈顶依次输出栈中元素.*/
 void TraveStack(PSQSTACK pS);
