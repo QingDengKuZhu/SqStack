@@ -13,7 +13,7 @@ typedef int Elem;
 
 typedef struct SqStack
 {
-	Elem *Base;			/*栈底指针.*/
+	Elem *Bottom;			/*栈底指针.*/
 	Elem *Top;			/*栈顶指针,始终指向栈顶元素的下一个位置.*/
 	size_t stacksize;	/*当前栈允许的的最大长度(即当前栈空间分配量).*/
 

@@ -8,23 +8,23 @@ pS为指向栈的指针,且pS不为NULL.
 
 void InitStack(PSQSTACK pS)
 {
-	pS->Base = (Elem *)malloc(sizeof(Elem) * STACK_INIT_SIZE);
-	if (!pS->Base)
+	pS->Bottom = (Elem *)malloc(sizeof(Elem) * STACK_INIT_SIZE);
+	if (!pS->Bottom)
 	{
 		printf("栈初始化失败!\n");
 		exit(ERROR);
 	}
 
 	pS->stacksize = STACK_INIT_SIZE;	
-	pS->Top = pS->Base;		/*刚初始化后,栈为空,此时栈指针与栈底指针相等.*/
+	pS->Top = pS->Bottom;		/*刚初始化后,栈为空,此时栈指针与栈底指针相等.*/
 	
 	return;
 }
 
 void DestroyStack(PSQSTACK pS)
 {
-	free(pS->Base);
-	pS->Base = NULL;
+	free(pS->Bottom);
+	pS->Bottom = NULL;
 	pS->stacksize = 0;	/*释放内存后,长度为0.*/
 	pS->Top = NULL;
 	
@@ -33,14 +33,14 @@ void DestroyStack(PSQSTACK pS)
 
 void ClearStack(PSQSTACK pS)
 {
-	pS->Top = pS->Base;
+	pS->Top = pS->Bottom;
 	
 	return;
 }
 
 BOOL StackEmpty(PSQSTACK pS)
 {
-	if (pS->Top == pS->Base)
+	if (pS->Top == pS->Bottom)
 	{
 		return TRUE;
 	}
@@ -53,7 +53,7 @@ BOOL StackEmpty(PSQSTACK pS)
 size_t StackLength(PSQSTACK pS)
 {
 	
-	return (size_t)(pS->Top - pS->Base);	/*指针之差的类型为signed int, size_t为unsigned int.*/
+	return (size_t)(pS->Top - pS->Bottom);	/*指针之差的类型为signed int, size_t为unsigned int.*/
 }
 
 STATUS GetTop(PSQSTACK pS, Elem *e)
@@ -75,16 +75,16 @@ STATUS Push(PSQSTACK pS, const Elem v)
 	/*
 	**当栈已满时.
 	*/
-	if (pS->stacksize == (size_t)(pS->Top - pS->Base))
+	if (pS->stacksize == (size_t)(pS->Top - pS->Bottom))
 	{
-		 pS->Base = realloc(pS->Base, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
-		if (!pS->Base)
+		 pS->Bottom = realloc(pS->Bottom, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
+		if (!pS->Bottom)
 		{
 			printf("扩展栈失败!\n");
 			exit(ERROR);
 		}
 
-		pS->Top = pS->Base + pS->stacksize;	/*与下一步操作顺序不能颠倒!*/
+		pS->Top = pS->Bottom + pS->stacksize;	/*与下一步操作顺序不能颠倒!*/
 		pS->stacksize += STACK_INCREMENT;
 	}
 	
@@ -114,7 +114,7 @@ STATUS Pop(PSQSTACK pS, Elem *e)
 
 void TraveStack(PSQSTACK pS)
 {
-	Elem *p = pS->Base;
+	Elem *p = pS->Bottom;
 	while (p != pS->Top)
 	{
 		printf("%d ", *p);

@@ -22,7 +22,7 @@ int main(void)
 
 	while (1)	/*while_@1*/
 	{
-		if (!(S.Base))
+		if (!(S.Bottom))
 		{
 			printf("栈不存在!\n");
 			break;
