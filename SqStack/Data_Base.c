@@ -58,15 +58,13 @@ size_t StackLength(PSQSTACK pS)
 
 STATUS GetTop(PSQSTACK pS, Elem *e)
 {
-	Elem *p = pS->Top;
 	if (TRUE == StackEmpty(pS))
 	{
 		return FAILE;
 	}
 	else
 	{
-		--p;/*未进行自减操作前,指向栈顶元素的下一个位置.*/
-		*e = *p;
+		*e = *(pS->Top-1);	/*栈顶指针Top,始终指向栈顶元素的下一个位置.*/
 
 		return OK;
 	}
