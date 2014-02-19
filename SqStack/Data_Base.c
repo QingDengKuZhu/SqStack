@@ -77,14 +77,13 @@ STATUS Push(PSQSTACK pS, const Elem v)
 	*/
 	if (pS->stacksize == (size_t)(pS->Top - pS->Base))
 	{
-		Elem *pNewBase = realloc(pS->Base, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
-		if (!pNewBase)
+		 pS->Base = realloc(pS->Base, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
+		if (!pS->Base)
 		{
 			printf("扩展栈失败!\n");
 			exit(ERROR);
 		}
 
-		pS->Base = pNewBase;
 		pS->Top = pS->Base + pS->stacksize;	/*与下一步操作顺序不能颠倒!*/
 		pS->stacksize += STACK_INCREMENT;
 	}
