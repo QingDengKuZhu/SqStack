@@ -53,7 +53,7 @@ BOOL StackEmpty(PSQSTACK pS)
 size_t StackLength(PSQSTACK pS)
 {
 	
-	return (pS->Top - pS->Base);
+	return (size_t)(pS->Top - pS->Base);	/*指针之差的类型为signed int, size_t为unsigned int.*/
 }
 
 STATUS GetTop(PSQSTACK pS, Elem *e)
