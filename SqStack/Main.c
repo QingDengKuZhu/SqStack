@@ -20,13 +20,6 @@ int main(void)
 
 	srand((int)time(NULL));
 
-	while (i < 20)
-	{
-
-		Push(&S, rand()%20);
-		++i;
-	}
-
 	while (1)	/*while_@1*/
 	{
 		if (!(S.Base))
