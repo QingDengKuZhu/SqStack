@@ -77,7 +77,7 @@ STATUS Push(PSQSTACK pS, const Elem v)
 	/*
 	**当栈已满时.
 	*/
-	if (pS->stacksize == pS->Top - pS->Base)
+	if (pS->stacksize == (size_t)(pS->Top - pS->Base))
 	{
 		Elem *pNewBase = realloc(pS->Base, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
 		if (!pNewBase)
@@ -109,7 +109,7 @@ STATUS Pop(PSQSTACK pS, Elem *e)
 	else
 	{
 		--pS->Top;
-		*e = pS->Top;
+		*e = *pS->Top;
 		return OK;
 	}
 
@@ -124,5 +124,3 @@ void TraveStack(PSQSTACK pS)
 		++p;
 	}
 }
-
-#endif
