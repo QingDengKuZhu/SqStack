@@ -120,4 +120,6 @@ void TraveStack(PSQSTACK pS)
 		printf("%d ", *p);
 		++p;
 	}
+
+	return;
 }
