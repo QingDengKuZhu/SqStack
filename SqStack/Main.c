@@ -109,6 +109,7 @@ int main(void)
 	
 			getchar();	
 			break;
+
 		case 9:			/*进制转换*/
 		{
 			int d;
@@ -124,6 +125,7 @@ int main(void)
 			 m = (unsigned int)v;
 			 n = (unsigned int)d;
 			 Conversion_ten_to_n(m, n);
+			
 			 getchar();
 			 break;
 		}
