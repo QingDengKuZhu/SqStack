@@ -31,7 +31,7 @@ int main(void)
 		system("cls");
 		Menu();
 
-		printf("请输入您的选择(1~10):");
+		printf("请输入您的选择(1~8):");
 		scanf("%d", &select);
 		getchar();
 
@@ -53,11 +53,11 @@ int main(void)
 		case 3:			/*出栈.*/
 			if (OK == Pop(&S, &e))
 			{
-				printf("删除成功,出栈元素是%d!\n", e);
+				printf("出栈成功,出栈元素是%d!\n", e);
 			}
 			else
 			{
-				printf("删除失败!\n");
+				printf("出栈失败!\n");
 			}
 
 			getchar();
