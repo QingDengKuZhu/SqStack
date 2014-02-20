@@ -7,6 +7,7 @@
 #include "Data_Base.h"
 #include "Test.h"
 #include <time.h> /*随机数*/
+#include "Data_Expand.h"
 
 int main(void)
 {
@@ -31,7 +32,7 @@ int main(void)
 		system("cls");
 		Menu();
 
-		printf("请输入您的选择(1~8):");
+		printf("请输入您的选择(1~9):");
 		scanf("%d", &select);
 		getchar();
 
@@ -105,10 +106,28 @@ int main(void)
 			{
 				printf("栈非空!\n");
 			}
-
+	
 			getchar();	
 			break;
-		
+		case 9:			/*进制转换*/
+		{
+			int d;
+			unsigned int m, n;
+			 v = InputValue("请输入一个非负整数:");
+			 d = InputValue("请输入转换进制:");
+			 if (v < 0 ||d<2 ||d>16)
+			 {
+				 printf("输入数据错误!\n");
+				 break;
+			 }
+
+			 m = (unsigned int)v;
+			 n = (unsigned int)d;
+			 Conversion_ten_to_n(m, n);
+			 getchar();
+			 break;
+		}
+
 		default:
 			printf("请重新选择!\n");
 			
