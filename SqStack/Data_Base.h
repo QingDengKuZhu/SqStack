@@ -28,8 +28,8 @@ size_t StackLength(PSQSTACK pS);
 /*获取栈顶元素.若操作成功,函数返回OK,*e保存栈顶的值;若操作失败,函数返回FAILE,*e为垃圾值.*/
 STATUS GetTop(PSQSTACK pS, Elem *e);
 
-/*插入新的数据元素v为栈顶元素.若成功,函数返回OK;否者返回FAILE.*/
-STATUS Push(PSQSTACK pS, const Elem v);
+/*插入新的数据元素v为栈顶元素.*/
+void Push(PSQSTACK pS, const Elem v);
 
 /*删除栈顶元素.若成功删除,函数返回OK,*e保存被删除元素的值;否者函数返回FAILE,*e为垃圾值.*/
 STATUS Pop(PSQSTACK pS, Elem *e);

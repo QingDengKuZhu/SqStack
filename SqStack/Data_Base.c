@@ -70,7 +70,7 @@ STATUS GetTop(PSQSTACK pS, Elem *e)
 	}
 }
 
-STATUS Push(PSQSTACK pS, const Elem v)
+void Push(PSQSTACK pS, const Elem v)
 {
 	/*
 	**当栈已满时.
@@ -94,7 +94,7 @@ STATUS Push(PSQSTACK pS, const Elem v)
 	*(pS->Top) = v;
 	++pS->Top;	/*移动栈顶指针.*/
 
-	return OK;
+	return;
 }
 
 STATUS Pop(PSQSTACK pS, Elem *e)
