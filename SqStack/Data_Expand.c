@@ -23,6 +23,8 @@ void Conversion_ten_to_n(unsigned int m, unsigned int n)
 		Pop(&S, &temp);
 		printf("%c", ch[temp]);
 	}
+	
+	DestroyStack(&S);
 
 	return;
 }
