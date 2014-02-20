@@ -130,6 +130,12 @@ int main(void)
 			 break;
 		}
 
+		case 10:
+			ReversePolishNotation();
+
+			getchar();
+			break;
+		
 		default:
 			printf("请重新选择!\n");
 			
