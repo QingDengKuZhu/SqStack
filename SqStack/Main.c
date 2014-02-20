@@ -39,14 +39,8 @@ int main(void)
 		{
 		case 1:			/*入栈.*/
 			v = InputValue("入栈元素为:");
-			if (FAILE == Push(&S, v))
-			{
-				printf("入栈失败!\n");
-			}
-			else
-			{
-				printf("入栈成功!\n");
-			}
+			Push(&S, v);
+			printf("入栈操作成功!\n");
 			
 			getchar();
 			break;
