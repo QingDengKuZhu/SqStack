@@ -6,7 +6,7 @@
 pS为指向栈的指针,且pS不为NULL.
 */
 
-void InitStack(PSQSTACK pS)
+void InitStack(SQSTACK *pS)
 {
 	pS->Bottom = (Elem *)malloc(sizeof(Elem) * STACK_INIT_SIZE);
 	if (!pS->Bottom)
@@ -21,7 +21,7 @@ void InitStack(PSQSTACK pS)
 	return;
 }
 
-void DestroyStack(PSQSTACK pS)
+void DestroyStack(SQSTACK *pS)
 {
 	free(pS->Bottom);
 	pS->Bottom = NULL;
@@ -31,14 +31,14 @@ void DestroyStack(PSQSTACK pS)
 	return;
 }
 
-void ClearStack(PSQSTACK pS)
+void ClearStack(SQSTACK *pS)
 {
 	pS->Top = pS->Bottom;
 	
 	return;
 }
 
-BOOL StackEmpty(PSQSTACK pS)
+BOOL StackEmpty(const SQSTACK *pS)
 {
 	if (pS->Top == pS->Bottom)
 	{
@@ -50,13 +50,13 @@ BOOL StackEmpty(PSQSTACK pS)
 	}
 }
 
-size_t StackLength(PSQSTACK pS)
+size_t StackLength(const SQSTACK *pS)
 {
 	
 	return (size_t)(pS->Top - pS->Bottom);	/*指针之差的类型为signed int, size_t为unsigned int.*/
 }
 
-STATUS GetTop(PSQSTACK pS, Elem *e)
+STATUS GetTop(const SQSTACK *pS, Elem *e)
 {
 	if (TRUE == StackEmpty(pS))
 	{
@@ -70,14 +70,14 @@ STATUS GetTop(PSQSTACK pS, Elem *e)
 	}
 }
 
-void Push(PSQSTACK pS, const Elem v)
+void Push(SQSTACK *pS, const Elem v)
 {
 	/*
 	**当栈已满时.
 	*/
 	if (pS->stacksize == (size_t)(pS->Top - pS->Bottom))
 	{
-		 pS->Bottom = realloc(pS->Bottom, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
+		 pS->Bottom = (Elem *)realloc(pS->Bottom, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
 		if (!pS->Bottom)
 		{
 			printf("扩展栈失败!\n");
@@ -97,7 +97,7 @@ void Push(PSQSTACK pS, const Elem v)
 	return;
 }
 
-STATUS Pop(PSQSTACK pS, Elem *e)
+STATUS Pop(SQSTACK *pS, Elem *e)
 {
 	if (TRUE == StackEmpty(pS))	/*若栈为空,则无法弹出栈顶元素.*/
 	{
@@ -112,7 +112,7 @@ STATUS Pop(PSQSTACK pS, Elem *e)
 
 }
 
-void TraveStack(PSQSTACK pS)
+void TraveStack(const SQSTACK *pS)
 {
 	Elem *p = pS->Bottom;
 	while (p != pS->Top)
