@@ -14,7 +14,7 @@
 typedef enum Bool
 {
 	FALSE = 0,	/*假*/ 
-	TRUE = 1	/*真*/
+	TRUE = 1		/*真*/
 
 } BOOL;
 
