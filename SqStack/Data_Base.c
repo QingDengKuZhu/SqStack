@@ -75,7 +75,7 @@ void Push(SQSTACK *pS, const Elem v)
 	/*
 	**当栈已满时.
 	*/
-	if (pS->stacksize == (size_t)(pS->Top - pS->Bottom))
+	if (pS->stacksize == StackLength(pS))
 	{
 		 pS->Bottom = (Elem *)realloc(pS->Bottom, (pS->stacksize + STACK_INCREMENT)*sizeof(Elem));
 		if (!pS->Bottom)
