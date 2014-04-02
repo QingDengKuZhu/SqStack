@@ -52,7 +52,6 @@ BOOL StackEmpty(const SQSTACK *pS)
 
 size_t StackLength(const SQSTACK *pS)
 {
-	
 	return (size_t)(pS->Top - pS->Bottom);	/*指针之差的类型为signed int, size_t为unsigned int.*/
 }
 

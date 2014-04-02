@@ -1,6 +1,7 @@
 ﻿#include "Data_Base.h"
 #include "ctype.h"
 #include <string.h>
+#include <math.h>	//pow()
 
 void Conversion_ten_to_n(const unsigned int m_ten, const unsigned int n)
 {
@@ -18,7 +19,7 @@ void Conversion_ten_to_n(const unsigned int m_ten, const unsigned int n)
 		M_ten/=n;
 	}
 
-	printf("十进制数%d转换为%d进制数为: ", m, n);
+	printf("转换为%d进制数为: ", n);
 	
 	while (FALSE == StackEmpty(&S))
 	{
@@ -37,9 +38,9 @@ void ReversePolishNotation(void)
 	SQSTACK S;
 	char c;	
 	int result;		/*结果*/
-	char str[10];	/*缓冲区*/
+	char str[10];		/*缓冲区*/
 	size_t i = 0;
-	int a, b;	/*操作数*/
+	int a, b;		/*操作数*/
 
 	InitStack(&S);
 
@@ -142,20 +143,26 @@ void Conversion_two_to_n(const char  m[], const unsigned int n)
 	unsigned int ten_sum = 0;	//临时存储字符串代表的二进制数的十进制值
 	long  temp = atoi(m);		//二进制的外在表现
 	int e;					//临时存储出栈的元素.
-
+	int j;					//二进制数转换成十进制数时使用
+	
 	InitStack(&S);
 
 	while (temp != 0)
 	{
 		Push(&S, temp%10);
 		temp /= 10;
-	}
+	}//此时最高位在栈顶,最低位在栈底
 
+	j = StackLength(&S) - 1;
+	
+	//将二进制数转换成十进制
 	while (FALSE == StackEmpty(&S))
 	{
 		Pop(&S, &e);
-		ten_sum += ten_sum*2 + e;
+		ten_sum += e * (int)pow(2*1.0, j*1.0);
+		j--;
 	}
+	
 	//销毁栈,避免内存泄漏
 	DestroyStack(&S);
 	
