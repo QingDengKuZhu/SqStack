@@ -136,6 +136,15 @@ int main(void)
 			getchar();
 			break;
 		
+		case 11:
+			{
+				char two[] = "1110";
+				Conversion_two_to_n(two, 16);
+
+				getchar();
+				break;
+			}
+
 		default:
 			printf("请重新选择!\n");
 			
