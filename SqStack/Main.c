@@ -144,6 +144,12 @@ int main(void)
 				getchar();
 				break;
 			}
+		
+		case 12:
+			BracketsMatch();
+
+			getchar();
+			break;
 
 		default:
 			printf("请重新选择!\n");

@@ -134,7 +134,6 @@ void ReversePolishNotation(void)
 	return;
 }
 
-
 void Conversion_two_to_n(const char  m[], const unsigned int n)
 {
 	SQSTACK S;
@@ -169,5 +168,70 @@ void Conversion_two_to_n(const char  m[], const unsigned int n)
 	//输出
 	Conversion_ten_to_n(ten_sum, n);
 	
+	return;
+}
+
+void BracketsMatch(void)
+{
+	int inputdata;		//存储输入数据
+	int topdata;			//存储当前栈的栈顶元素
+	int n;				//存储对应的括号的十进制表达式的差
+
+	SQSTACK S;
+	InitStack(&S);
+	
+	printf("请输待匹配数据('#'表示输结束):");
+	scanf("%d", &inputdata);
+
+	while ((int)'#' != inputdata)
+	{
+		//过滤非括号输入
+		if ('('!=inputdata && ')'!=inputdata && '{'!=inputdata && '}'!=inputdata && '['!=inputdata && ']'!=inputdata)
+		{
+			getchar();
+			scanf("%d", &inputdata);
+
+			continue;
+		}
+
+		if (StackEmpty(&S) == TRUE)
+		{
+			Push(&S, inputdata);
+			getchar();		
+			scanf("%d", &inputdata);
+		
+			continue;
+		}
+
+		GetTop(&S, &topdata);	//因为栈非空,所以一定会取得栈顶元素
+		n = abs(topdata-inputdata);
+		if (1 == n || 2 == n)
+		{
+			Pop(&S, &topdata);	//其中topdata的值无用
+			getchar();
+			scanf("%d", &inputdata);
+			
+			continue;
+		}
+
+		Push(&S, inputdata);
+		getchar();
+		scanf("%d", &inputdata);
+		
+	}
+
+	//若所有括号都匹配,则栈一定为空
+	if (TRUE == StackEmpty(&S))
+	{
+		printf("输入的括号匹配!\n");
+	}
+	else
+	{
+		printf("输入的括号不匹配!\n");
+	}
+
+	DestroyStack(&S);//一定要执行此操作,避免内存泄漏
+
+	getchar();
 	return;
 }

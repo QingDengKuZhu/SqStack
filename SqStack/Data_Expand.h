@@ -17,4 +17,7 @@ void Conversion_two_to_n(const char m[], const unsigned int n);
 /*逆波兰计算器*/
 void ReversePolishNotation(void);
 
+/*括号匹配*/
+void BracketsMatch(void);
+
 #endif
